@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Табличный детектив | Старт проекта</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f4f8;
+            color: #0a1c2a;
+            line-height: 1.4;
+        }
+
+               body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(30, 90, 80, 0.03) 0%, rgba(15, 47, 58, 0.02) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 28px 70px;
+        }
+
+                .hero {
+            text-align: center;
+            margin-bottom: 56px;
+            background: linear-gradient(145deg, #ffffff 0%, #f9fdfe 100%);
+            border-radius: 64px;
+            padding: 48px 32px;
+            box-shadow: 0 25px 45px -12px rgba(0, 32, 32, 0.15);
+            border: 1px solid rgba(60, 130, 110, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "🔍";
+            font-size: 180px;
+            opacity: 0.04;
+            position: absolute;
+            bottom: -40px;
+            right: -20px;
+            pointer-events: none;
+            transform: rotate(-8deg);
+        }
+
+        .hero-icon {
+            font-size: 4.2rem;
+            margin-bottom: 16px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(125deg, #1a5f6e, #0c3e48, #1f7a6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 16px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #2c6a5c;
+            background: #eef7f4;
+            display: inline-block;
+            padding: 10px 28px;
+            border-radius: 80px;
+            font-weight: 600;
+            margin-top: 10px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: 24px auto 0;
+            color: #2c4e5e;
+            font-size: 1.05rem;
+            background: #ffffffcc;
+            padding: 10px 20px;
+            border-radius: 48px;
+            backdrop-filter: blur(2px);
+        }
+
+                .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin: 48px 0;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.96);
+            border-radius: 40px;
+            padding: 32px 28px;
+            backdrop-filter: blur(2px);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(45, 120, 110, 0.12);
+            box-shadow: 0 12px 28px -10px rgba(0, 32, 32, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 36px -14px rgba(20, 70, 60, 0.2);
+            border-color: rgba(50, 140, 120, 0.3);
+            background: white;
+        }
+
+        .card-icon {
+            font-size: 2.4rem;
+            margin-bottom: 20px;
+            background: #e9f4f1;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            color: #237a6b;
+        }
+
+        h3 {
+            font-size: 1.65rem;
+            margin-bottom: 14px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #123e48;
+        }
+
+                .role-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .role-tag {
+            background: #eaf5f2;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #196152;
+            transition: all 0.1s ease;
+            border: 1px solid #cde3dc;
+        }
+
+        .week-line {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #e2efe9;
+            transition: background 0.1s;
+        }
+
+        .week-num {
+            font-weight: 800;
+            min-width: 130px;
+            font-size: 1rem;
+            color: #268070;
+            background: #ebf6f2;
+            padding: 5px 12px;
+            border-radius: 60px;
+            text-align: center;
+        }
+
+        .week-desc {
+            font-weight: 500;
+            color: #1e4e5c;
+        }
+
+        .big-quote {
+            background: linear-gradient(115deg, #eef7f3 0%, #ffffff 100%);
+            border-radius: 48px;
+            padding: 36px 32px;
+            text-align: center;
+            margin: 48px 0;
+            border: 1px solid #cde5dd;
+            box-shadow: 0 12px 26px -12px rgba(0,0,0,0.08);
+        }
+
+                .btn {
+            background: #1f6e62;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: 0.25s;
+            box-shadow: 0 6px 14px rgba(30, 90, 70, 0.3);
+        }
+
+        .btn:hover {
+            background: #0e5548;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -8px rgba(20, 80, 65, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 2px solid rgba(70, 140, 120, 0.2);
+            color: #5c7f86;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 780px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .week-line {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 32px 20px;
+            }
+            .card {
+                padding: 26px 22px;
+            }
+        }
+
+        .fa, .fas {
+            margin-right: 6px;
+        }
+
+        .small-text {
+            font-size: 0.9rem;
+            color: #2f6673;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: #ddf1eb;
+            border-radius: 30px;
+            padding: 5px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-top: 8px;
+            color: #1b6b5c;
+        }
+
+        .glow-text {
+            background: linear-gradient(120deg, #1c6b60, #26897a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    
+        <div class="hero">
+        <div class="hero-icon">🔍📊</div>
+        <h1>ТАБЛИЧНЫЙ ДЕТЕКТИВ</h1>
+        <div class="tagline">«Данные не лгут, но иногда им нужен детектив»</div>
+        <p>⚡ Командное расследование в электронных таблицах: поиск аномалий, улик и «нарушителя» с помощью формул, логики и условного форматирования.</p>
+        <div style="margin-top: 28px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+            <span class="stat-badge"><i class="fas fa-calendar-alt"></i> 4 недели</span>
+            <span class="stat-badge"><i class="fas fa-users"></i> 9 класс (14–15 лет)</span>
+            <span class="stat-badge"><i class="fas fa-clock"></i> 12 часов</span>
+            <span class="stat-badge"><i class="fas fa-table"></i> Excel / Google Таблицы</span>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-icon">🎯</div>
+            <h3>Цель проекта</h3>
+            <p>Сформировать навыки обработки информации в электронных таблицах через детективную задачу: выявить скрытую аномалию и найти «нарушителя» с помощью логических функций и визуализации.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📦</div>
+            <h3>Результат команды</h3>
+            <p>✔ Работающая таблица (подозреваемые, алиби, улики)<br>✔ Автоматическое выявление подозрительных записей (ЕСЛИ, ВПР, И/ИЛИ)<br>✔ Презентация «Детективный вывод» + перекрёстная проверка</p>
+        </div>
+    </div>
+
+       <div class="card" style="margin-bottom: 40px; background: linear-gradient(135deg, #fff, #fbfefd);">
+        <div class="card-icon">🧑‍💻</div>
+        <h3>Команда: 4 роли + Капитан</h3>
+        <div class="role-list">
+            <span class="role-tag"><i class="fas fa-chart-line"></i> Аналитик данных</span>
+            <span class="role-tag"><i class="fas fa-calculator"></i> Формулист</span>
+            <span class="role-tag"><i class="fas fa-paintbrush"></i> Оформитель-докладчик</span>
+            <span class="role-tag"><i class="fas fa-vial"></i> Тестировщик</span>
+            <span class="role-tag"><i class="fas fa-crown"></i> Капитан</span>
+        </div>
+        <p class="small-text" style="margin-top: 20px;"><i class="fas fa-check-circle" style="color:#2c7a6e;"></i> Капитан регистрирует команду, координирует и представляет проект. Аналитик строит базу, формулист пишет сложные формулы, оформитель визуализирует улики, тестировщик проводит перекрёстную проверку.</p>
+    </div>
+
+        <div class="card" style="margin-bottom: 32px;">
+        <div class="card-icon">📅</div>
+        <h3>План расследования (4 недели)</h3>
+        <div style="margin-top: 24px;">
+            <div class="week-line">
+                <div class="week-num"><i class="fas fa-flag-checkered"></i> Неделя 1</div>
+                <div class="week-desc"><strong>Подготовка:</strong> регистрация команд, входное тестирование, игровая разминка (адресация, типы данных), распределение ролей, создание чата.</div>
+            </div>
+            <div class="week-line">
+                <div class="week-num"><i class="fas fa-microscope"></i> Неделя 2</div>
+                <div class="week-desc"><strong>База + логика:</strong> «База данных детектива» (ввод данных, адресация, именованные диапазоны) + «Логические зацепки» (ЕСЛИ, И, ИЛИ, ЕСЛИОШИБКА).</div>
+            </div>
+            <div class="week-line">
+                <div class="week-num"><i class="fas fa-link"></i> Неделя 3</div>
+                <div class="week-desc"><strong>Поиск улик + визуал:</strong> ВПР / ПОИСКПОЗ / ИНДЕКС для связывания таблиц + условное форматирование, гистограммы и значки.</div>
+            </div>
+            <div class="week-line">
+                <div class="week-num"><i class="fas fa-exchange-alt"></i> Неделя 4</div>
+                <div class="week-desc"><strong>Финал:</strong> перекрёстная проверка (обмен таблицами), дневник команды, создание презентации (6–7 слайдов), защита проекта.</div>
+            </div>
+        </div>
+    </div>
+
+      <div class="grid-2">
+        <div class="card">
+            <div class="card-icon">❓</div>
+            <h3>Основополагающий вопрос</h3>
+            <p style="font-weight: 500; background: #eef3f1; padding: 12px 16px; border-radius: 24px;">«Как с помощью цифровых инструментов и логики отличить достоверные данные от ложных и найти скрытую аномалию?»</p>
+            <h3 style="font-size: 1.3rem; margin-top: 28px;">Проблемные вопросы</h3>
+            <ul style="margin-left: 20px; margin-top: 12px; list-style-type: none;">
+                <li><i class="fas fa-database" style="color:#268070;"></i> Как организовать данные о подозреваемых, алиби и уликах?</li>
+                <li><i class="fas fa-brain"></i> Какие логические функции автоматически выявляют противоречия?</li>
+                <li><i class="fas fa-link"></i> Как связать таблицы через ВПР, ПОИСКПОЗ?</li>
+                <li><i class="fas fa-highlighter"></i> Как сделать подсветку подозрительных записей?</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🧠</div>
+            <h3>Предметные умения</h3>
+            <p>⭐ Типы данных, абсолютная/относительная адресация<br>⭐ Логические функции ЕСЛИ, И, ИЛИ, ЕСЛИОШИБКА<br>⭐ Функции ВПР, ПОИСКПОЗ, ИНДЕКС<br>⭐ Условное форматирование и визуализация аномалий</p>
+            <div class="role-list" style="margin-top: 20px;">
+                <span class="role-tag"><i class="fas fa-microchip"></i> Информатика 9 класс</span>
+                <span class="role-tag"><i class="fas fa-square-root-alt"></i> Математика (логика)</span>
+            </div>
+        </div>
+    </div>
+
+        <div class="big-quote">
+        <i class="fas fa-search" style="font-size: 2.8rem; color: #268070; background: #e0f0ea; padding: 16px; border-radius: 60px; margin-bottom: 12px; display: inline-block;"></i>
+        <h3 style="margin: 16px 0 10px;">Итоговая защита</h3>
+        <p style="font-size: 1rem;">Команда демонстрирует работу таблицы, объясняет логику поиска «нарушителя», показывает главные формулы и визуальные улики. <br> <strong>Презентация + живая демонстрация + детективный вывод.</strong></p>
+        <div style="margin-top: 24px;">
+            <span class="stat-badge" style="background:#d9f0ea;"><i class="fas fa-exchange-alt"></i> Перекрёстная проверка</span>
+            <span class="stat-badge" style="background:#d9f0ea;"><i class="fas fa-book-open"></i> Дневник команды</span>
+            <span class="stat-badge" style="background:#d9f0ea;"><i class="fas fa-microphone-alt"></i> Защита</span>
+        </div>
+    </div>
+
+    <footer>
+        <p>© Лукашевич Анжела Сергеевна, ГУО «Гродненский государственный университет имени Янки Купалы», 2026</p>
+        <p style="margin-top: 8px;">🌐 Сетевой проект «Табличный детектив» • Обработка информации в электронных таблицах</p>
+        <p style="margin-top: 12px;"><i class="fas fa-shield-alt"></i> Данные не лгут — детектив всегда находит улики!</p>
+    </footer>
+</div>
+</body>
+</html>
